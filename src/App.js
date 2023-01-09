@@ -32,6 +32,20 @@ function App() {
     },
   
   ])
+  const[showAdd,setShowadd]=useState(false);
+
+  const onAdd=()=>{
+    setShowadd(!showAdd)
+  }
+  const addTask=(task)=>{
+    const id=Math.floor(Math.random()*100)+1;
+    const newTask={id,...task};
+    console.log(newTask);
+    
+    settask([...tasks, newTask]);
+    console.log(tasks);
+  }
+
   const deleteTask=(id)=>{
     settask(tasks.filter((task)=> task.id !== id))
     // console.log('click',id)
@@ -43,8 +57,8 @@ function App() {
   return (
     <div className="container">
       
-      <Header title="Task List"/>
-      <AddTask/>
+      <Header title="Task List" onAdd={onAdd} btnTitle={showAdd===true?'Close':'Add' } col={showAdd===true?'red':'green' }/>
+      {showAdd&&<AddTask onAdd={addTask} />}
       {tasks.length>0 ? ( <Tasks task={tasks} delete={deleteTask} onToggle={onToggle}/>):('No Tasks')}
     </div>
   );
