@@ -2,11 +2,15 @@ import React from "react";
 import { FaTimes } from "react-icons/fa";
 
 const Task = (props) => {
+  // const [col, setCol] = useState("yellow");
+  // AXIOS CALL IF REM VAL 1 THEN SETCOLO TO GREEN .. 
   return (
     <div
-      className={`task ${props.reminder ? "reminder" : ""}`}
-      onDoubleClick={() => props.onToggle(props.ide)}
-    >
+    
+    className={`task ${props.reminder && 'reminder'}`}
+    onDoubleClick={() => props.onToggle(props.ide)}
+  >
+    
       <h3>
         {props.text}
         <FaTimes

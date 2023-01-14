@@ -29,8 +29,8 @@ app.get('/api/get',(req,res)=>{
 app.post('/api/update',(req,res)=>{
     const id=req.body.id;
     const newReminder=req.body.updateReminder;
-    console.log(id);
-    console.log(newReminder);
+    // console.log(id);
+    // console.log(newReminder);
     const sqlUpdate="update tasks set reminder= ? where id = ?";
     db.query(sqlUpdate,[newReminder,id],(err,result)=>{
         if(err)
@@ -40,7 +40,40 @@ app.post('/api/update',(req,res)=>{
         }
         
     })
-    // res.send("YES");
+    const sqlget="select * from tasks;";
+    db.query(sqlget,(err,result)=>{
+        if(err)
+        {
+            
+        }
+        res.send(result);
+        
+    })
+    
+}
+)
+app.post('/api/delete',(req,res)=>{
+    const id=req.body.id;
+    
+    const sqlUpdate="delete from tasks where id = ?";
+    db.query(sqlUpdate,[id],(err,result)=>{
+        if(err)
+        {
+
+            console.log(err);
+        }
+        
+    })
+    const sqlget="select * from tasks;";
+    db.query(sqlget,(err,result)=>{
+        if(err)
+        {
+            
+        }
+        res.send(result);
+        
+    })
+    
 }
 )
 app.post('/api/insert',(req,res)=>{
@@ -56,6 +89,15 @@ app.post('/api/insert',(req,res)=>{
             // alert('Unsucessfull insert');
             console.log(err);
         }
+        
+    })
+    const sqlget="select * from tasks;";
+    db.query(sqlget,(err,result)=>{
+        if(err)
+        {
+            
+        }
+        res.send(result);
         
     })
 })

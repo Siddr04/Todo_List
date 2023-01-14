@@ -64,6 +64,9 @@ body {
 .task.reminder {
   border-left: 5px solid green;
 }
+.task.notreminder {
+  border-left: 5px solid yellow;
+}
 
 .task h3 {
   display: flex;
